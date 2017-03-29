@@ -20,7 +20,6 @@ console.log('Your server is running on ' + port);
 let users = [];
 let globalsocket = io.on('connection', socket => {
   if (socket && socket.client) {
-    console.log('connected: ' + socket.client.id);
     users.push(socket.client.id);
 
     globalsocket.emit('action', {
@@ -30,8 +29,7 @@ let globalsocket = io.on('connection', socket => {
     });
   }
 
-  socket.on('disconnect', function() {
-    console.log('disconnected: ' + socket.client.id);
+  socket.on('disconnect', () => {
     let i = users.indexOf(socket.client.id);
     users.splice(i, 1);
   });
