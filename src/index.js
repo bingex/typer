@@ -2,14 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import rootReducer from './store/reducers/rootReducer';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
+import socketIO from 'socket.io-client';
+import socketIoMiddleware from 'redux-socket.io-middleware';
 
 import App from './App';
 import './index.css';
 
-const store = createStore(rootReducer, composeWithDevTools());
+const io = socketIO.connect();
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(socketIoMiddleware(io)))
+);
 
 ReactDOM.render(
   <BrowserRouter>
