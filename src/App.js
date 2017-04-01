@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <div>
         <Route exact path="/" component={Welcome} />
-        <Route path="/type" component={TypePage} />
+        <Route path="/single" component={TypePage} />
       </div>
     );
   }

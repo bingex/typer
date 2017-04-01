@@ -6,8 +6,8 @@ class Welcome extends React.Component {
     render() {
         return (
             <div>
-                <h4>Are you ready to start?</h4>
-                <Link to="/type">Start</Link>
+                <Link to="/single">Single player</Link>
+                <Link to="/multi">Multiplayer</Link>
 
                 <ActiveUsers />
             </div>

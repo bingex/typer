@@ -43,16 +43,15 @@ export default connect(null, { setActiveWord })(TextInput);
 const SInputWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 30px;
+  padding: 40px 0 0 0;
 `;
 
 const SInput = styled.input`
   width: 100%;
-  max-width: 300px;
   height: 36px;
   border-radius: 3px;
   padding-left: 10px;
-  border: 1px solid #00BFA5;
+  border: 2px solid #00BFA5;
   outline: none;
   font-size: 16px;
   color: #263238;
