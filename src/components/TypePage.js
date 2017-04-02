@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Text from './Text';
 import TextInput from './TextInput';
 import Timer from './Timer';
+import TypeSpeed from './TypeSpeed';
 import demoText from './../DemoText';
 
 const textArr = demoText.split(' ');
@@ -14,6 +15,7 @@ class TypePage extends React.Component {
       <SWrapper>
         <Text data={textArr} active={this.props.activeWordIndex} />
         <TextInput data={textArr} active={this.props.activeWordIndex} />
+        <TypeSpeed />
         <Timer />
       </SWrapper>
     );

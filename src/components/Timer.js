@@ -1,5 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { setTimePassed } from './../store/actions/calcActions';
+import { SIndicatorWrapper } from './../styles/generalStyles';
+
+const STimerWrapper = styled(SIndicatorWrapper)`
+  right: 20px;
+`;
 
 class Timer extends React.Component {
   constructor(props) {
@@ -51,6 +58,9 @@ class Timer extends React.Component {
         (seconds > 9 ? seconds : '0' + seconds)
     });
 
+    // Set time passed count for speed calculation
+    this.props.setTimePassed();
+
     this.timer();
   }
 
@@ -63,18 +73,8 @@ class Timer extends React.Component {
   }
 }
 
-export default Timer;
+Timer.propTypes = {
+  setTimePassed: React.PropTypes.func.isRequired
+};
 
-//STYLES
-const STimerWrapper = styled.div`
-	position: absolute;
-	right: 20px;
-	top: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	border: 2px solid #2196F3;
-`;
+export default connect(null, { setTimePassed })(Timer);
