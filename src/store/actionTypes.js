@@ -1,7 +1,13 @@
+// Text
 export const SET_ACTIVE_WORD_INDEX = 'SET_ACTIVE_WORD_INDEX';
 
+// Users
 export const NEW_USER_CONNECTED = 'NEW_USER_CONNECTED';
+export const NEW_SEARCH_USER = 'NEW_SEARCH_USER';
+export const REMOVE_SEARCH_USER = 'REMOVE_SEARCH_USER';
+export const SEARCH_ROOM_CHANGED = 'SEARCH_ROOM_CHANGED';
 
+// Calculations
 export const SET_TIME_PASSED = 'SET_TIME_PASSED';
 
 

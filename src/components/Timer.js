@@ -26,6 +26,10 @@ class Timer extends React.Component {
     this.startTimer();
   }
 
+  componentWillUnmount() {
+    this.stopTimer();
+  }
+
   timer() {
     this.setState({ timer: setTimeout(this.add, 1000) });
   }

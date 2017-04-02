@@ -1,6 +1,9 @@
  ☐ Add error class when user input incorrect word after space press, remove after next press.
  ☐ Make wait component for multiplayer.
- ☐ Make socket.io room for players (if there are two or more players ready).
+ ✔ Make socket.io room for players. @done (17-04-02 23:32)
+ ☐ If in search type room more then 1 player - start type.
+ ☐ Make User component (user socket id as username).
  ✔ Make TypeSpeed component for single player. @done (17-04-02 12:17)
  ☐ Share typespeed for all other players in socket room (simple implementation of car race).
  ☐ Intigrate random text api.
+ ☐ Make usernames as sone fancy words instead of socket id's (IDEA)?

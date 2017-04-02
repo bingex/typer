@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Welcome from './components/Welcome';
 import TypePage from './components/TypePage';
+import WaitForUsers from './components/WaitForUsers';
 
 class App extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class App extends React.Component {
       <div>
         <Route exact path="/" component={Welcome} />
         <Route path="/single" component={TypePage} />
+        <Route path="/multi" component={WaitForUsers} />
       </div>
     );
   }
