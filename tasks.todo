@@ -7,3 +7,5 @@
  ☐ Share typespeed for all other players in socket room (simple implementation of car race).
  ☐ Intigrate random text api.
  ☐ Make usernames as sone fancy words instead of socket id's (IDEA)?
+ ✔ Add styles to Welcompe component. @done (17-04-04 23:11)
+ ☐ Add styles to WaitForUsers component.
