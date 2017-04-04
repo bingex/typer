@@ -4,14 +4,32 @@ import styled from 'styled-components';
 import { setActiveWord } from './../store/actions/textActions';
 
 class TextInput extends React.Component {
-  state = { word: '' };
+  state = {
+    word: '',
+    wrong: false
+  };
+
+  componentWillUnmount() {
+    // Refresh active word index when unmount
+    this.props.setActiveWord(0);
+  }
 
   onChangeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value, wrong: false });
 
-    if (this.state.word === this.props.data[this.props.active]) {
+    // If inputed word equal needed word and current input symbol is space
+    if (
+      this.state.word === this.props.data[this.props.active] &&
+      e.target.value === this.state.word + ' '
+    ) {
+      // Clean input for next word
       this.setState({ word: '' });
-      this.props.setActiveWord();
+
+      // Set active word index to next
+      this.props.setActiveWord(this.props.active + 1);
+    } else if (e.target.value.includes(' ')) {
+      // If we press space and word !== to needed show text in red color
+      this.setState({ wrong: true });
     }
   };
 
@@ -25,6 +43,7 @@ class TextInput extends React.Component {
           placeholder="Input text here"
           onChange={this.onChangeHandler}
           autoComplete="off"
+          style={{ color: this.state.wrong ? '#B71C1C' : '#263238' }}
         />
       </SInputWrapper>
     );
@@ -54,7 +73,6 @@ const SInput = styled.input`
   border: 2px solid #00BFA5;
   outline: none;
   font-size: 16px;
-  color: #263238;
 
   &::-webkit-input-placeholder {
     color: #CFD8DC;
