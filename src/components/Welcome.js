@@ -4,12 +4,29 @@ import ActiveUsers from './ActiveUsers';
 import styled from 'styled-components';
 
 class Welcome extends React.Component {
+  state = {
+    username: ''
+  };
+
+  changeInput = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
     return (
       <SWrapper>
         <SLeft>
-          <SLink to="/type">Single player</SLink>
-          <SLink to="/multi">Multiplayer</SLink>
+          <div style={{ width: '120px' }}>
+            <SInput
+              type="text"
+              placeholder="Your name?"
+              name="username"
+              value={this.state.username}
+              onChange={this.changeInput}
+            />
+            <SLink to="/type">Single player</SLink>
+            <SLink to="/multi">Multiplayer</SLink>
+          </div>
           <SMiniTitle>Typer. Test your speed.</SMiniTitle>
         </SLeft>
 
@@ -55,8 +72,22 @@ const SRight = styled(SSection)`
 	background-color: #009688;
 `;
 
+const SInput = styled.input`
+	width: 110px;
+	border: none;
+	border-radius: 2px;
+	height: 36px;
+	outline: none;
+	padding-left: 10px;
+	background-color: #18FFFF;
+
+	&::-webkit-input-placeholder {
+    color: #00BCD4;
+  }
+`;
+
 const SLink = styled(Link)`
-	margin: 10px;
+	margin: 10px 0;
 	height: 36px;
 	border-radius: 2px;
 	color: #3E2723;
