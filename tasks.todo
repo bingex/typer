@@ -14,3 +14,4 @@
  ☐ Add Results component: show it after race is finished.
  ✔ Blur text, disable input and timer when user wait for start. @done (17-04-05 21:45)
  ☐ Do not allow open type page without welcome page.
+ ☐ Implement rooms correctly. Need new room every new search. (Idea: add room field to users array?).
