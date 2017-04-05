@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import {
-  addNewSearchUser,
-  removeSearchUser
-} from './../store/actions/userActions';
+import { addNewSearchUser } from './../store/actions/userActions';
 
 class WaitForUsers extends React.Component {
   componentDidMount() {
@@ -23,7 +20,7 @@ class WaitForUsers extends React.Component {
             />
           : <div>
               <p>Wait for users</p>
-              {this.props.users}
+              {this.props.users.map(u => u.id)}
             </div>}
       </div>
     );
@@ -32,8 +29,7 @@ class WaitForUsers extends React.Component {
 
 WaitForUsers.propTypes = {
   users: React.PropTypes.array.isRequired,
-  addNewSearchUser: React.PropTypes.func.isRequired,
-  removeSearchUser: React.PropTypes.func.isRequired
+  addNewSearchUser: React.PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -44,6 +40,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { addNewSearchUser, removeSearchUser })(
-  WaitForUsers
-);
+export default connect(mapStateToProps, { addNewSearchUser })(WaitForUsers);

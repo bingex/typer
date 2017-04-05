@@ -17,6 +17,7 @@ app.use(express.static(__dirname + '/public'));
 console.log('Your server is running on ' + port);
 
 // Websocket
+let room = _generateRoomName();
 let users = [];
 let usersSearchType = [];
 const roomSize = 2;
@@ -30,41 +31,46 @@ let globalsocket = io.on('connection', socket => {
   // On disconnect user remove him from room and all users list
   socket.on('disconnect', () => {
     let id = socket.client.id;
+    console.log(`Room ${room} left ${id}.`);
 
     let usersIndex = users.indexOf(id);
     if (usersIndex !== -1) {
-      users.splice(users.indexOf(id), 1);
+      users.splice(usersIndex, 1);
       emitUsers(globalsocket, users);
     }
 
-    let usersSearchIndex = usersSearchType.indexOf(id);
-    if (usersSearchIndex !== -1) {
-      usersSearchType.splice(usersSearchType.indexOf(id), 1);
-      emitRoomUsers(io, usersSearchType);
-    }
-
-    if (usersSearchType.length >= roomSize) {
-      emitStartType(io, usersSearchType, false);
-    }
+    // let usersSearchIndex = usersSearchType.map(u => u.id).indexOf(id);
+    // if (usersSearchIndex !== -1) {
+    //   usersSearchType.splice(usersSearchIndex, 1);
+    //   emitRoomUsers(io, usersSearchType);
+    // }
   });
 
   socket.on('action', action => {
     switch (action.type) {
       case 'NEW_SEARCH_USER':
-        usersSearchType.push(socket.client.id);
-        socket.join('searchRoom');
+        // Create new socket room
+        socket.join(room);
+        console.log(`Room ${room} join ${socket.client.id}.`);
+
+        // Add new socket id to users search
+        usersSearchType.push({
+          id: socket.client.id,
+          room
+        });
+
+        // Emit users search to all in room
         emitRoomUsers(io, usersSearchType);
 
-        // Start type if there are 2 or more users search
+        // Start type if there are equal or more then room size
         if (usersSearchType.length >= roomSize) {
           emitStartType(io, usersSearchType, true);
+
+          // Refresh search users and generate new room name
+          usersSearchType = [];
+          room = _generateRoomName();
         }
 
-        break;
-
-      case 'REMOVE_SEARCH_USER':
-        usersSearchType.splice(usersSearchType.indexOf(socket.client.id), 1);
-        emitRoomUsers(io, usersSearchType);
         break;
 
       default:
@@ -75,7 +81,10 @@ let globalsocket = io.on('connection', socket => {
 
 // Update users list in room
 function emitRoomUsers(socket, users) {
-  socket.to('searchRoom').emit('action', {
+  if (users.length === 0) {
+    return false;
+  }
+  socket.to(users[0].room).emit('action', {
     type: 'SEARCH_ROOM_CHANGED',
     meta: { remote: true },
     payload: users
@@ -84,14 +93,14 @@ function emitRoomUsers(socket, users) {
 
 // Start type competition
 function emitStartType(socket, users, param) {
-  socket.to('searchRoom').emit('action', {
+  if (users.length === 0) {
+    return false;
+  }
+  socket.to(users[0].room).emit('action', {
     type: 'START_TYPE_FROM_SERVER',
     meta: { remote: true },
     payload: param
   });
-
-  // Refresh search users
-  users = [];
 }
 
 // Update all users list in all connected clients
@@ -101,4 +110,8 @@ function emitUsers(socket, users) {
     meta: { remote: true },
     payload: users
   });
+}
+
+function _generateRoomName() {
+  return 'usersRoom' + new Date().getTime();
 }
