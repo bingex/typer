@@ -3,11 +3,14 @@
  ✔ Make TypeSpeed component for single player. @done (17-04-02 12:17)
  ✔ Add styles to Welcompe component. @done (17-04-04 23:11)
  ✔ Make wait component for multiplayer. @done (17-04-04 23:46)
- ☐ If in search type room more then 1 player - start type.
- ☐ Add posibiliti to leave type.
+ ✔ If in search type room more then 1 player - start type. @done (17-04-05 21:15)
+ ☐ Add posibility to leave type.
  ☐ Make User component (user socket id as username).
+ ☐ Add start timer component for multiplayer.
  ☐ Share typespeed for all other players in socket room (simple implementation of car race).
  ☐ Intigrate random text api.
  ☐ Make usernames as sone fancy words instead of socket id's (IDEA)?
  ☐ Add styles to WaitForUsers component.
  ☐ Add Results component: show it after race is finished.
+ ✔ Blur text, disable input and timer when user wait for start. @done (17-04-05 21:45)
+ ☐ Do not allow open type page without welcome page.

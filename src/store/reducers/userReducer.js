@@ -1,9 +1,13 @@
-import { NEW_USER_CONNECTED } from './../actionTypes';
-import { SEARCH_ROOM_CHANGED } from './../actionTypes';
+import {
+  NEW_USER_CONNECTED,
+  SEARCH_ROOM_CHANGED,
+  START_TYPE_FROM_SERVER
+} from './../actionTypes';
 
 const initial = {
   activeUsers: [],
-  searchUsers: []
+  searchUsers: [],
+  raceStartedFromServer: false
 };
 
 export default function userReducer(state = initial, action = {}) {
@@ -11,6 +15,11 @@ export default function userReducer(state = initial, action = {}) {
     case NEW_USER_CONNECTED:
       return Object.assign({}, state, {
         activeUsers: action.payload
+      });
+
+    case START_TYPE_FROM_SERVER:
+      return Object.assign({}, state, {
+        raceStartedFromServer: action.payload
       });
 
     case SEARCH_ROOM_CHANGED:

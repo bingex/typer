@@ -42,6 +42,10 @@ let globalsocket = io.on('connection', socket => {
       usersSearchType.splice(usersSearchType.indexOf(id), 1);
       emitRoomUsers(io, usersSearchType);
     }
+
+    if (usersSearchType.length >= roomSize) {
+      emitStartType(io, usersSearchType, false);
+    }
   });
 
   socket.on('action', action => {
@@ -50,6 +54,12 @@ let globalsocket = io.on('connection', socket => {
         usersSearchType.push(socket.client.id);
         socket.join('searchRoom');
         emitRoomUsers(io, usersSearchType);
+
+        // Start type if there are 2 or more users search
+        if (usersSearchType.length >= roomSize) {
+          emitStartType(io, usersSearchType, true);
+        }
+
         break;
 
       case 'REMOVE_SEARCH_USER':
@@ -70,6 +80,18 @@ function emitRoomUsers(socket, users) {
     meta: { remote: true },
     payload: users
   });
+}
+
+// Start type competition
+function emitStartType(socket, users, param) {
+  socket.to('searchRoom').emit('action', {
+    type: 'START_TYPE_FROM_SERVER',
+    meta: { remote: true },
+    payload: param
+  });
+
+  // Refresh search users
+  users = [];
 }
 
 // Update all users list in all connected clients

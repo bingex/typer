@@ -44,6 +44,7 @@ class TextInput extends React.Component {
           onChange={this.onChangeHandler}
           autoComplete="off"
           style={{ color: this.state.wrong ? '#B71C1C' : '#263238' }}
+          disabled={!this.props.typeStarted}
         />
       </SInputWrapper>
     );

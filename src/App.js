@@ -10,7 +10,7 @@ class App extends React.Component {
     return (
       <div>
         <Route exact path="/" component={Welcome} />
-        <Route path="/single" component={TypePage} />
+        <Route path="/type" component={TypePage} />
         <Route path="/multi" component={WaitForUsers} />
       </div>
     );

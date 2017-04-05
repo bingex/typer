@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
   addNewSearchUser,
   removeSearchUser
@@ -10,15 +11,20 @@ class WaitForUsers extends React.Component {
     this.props.addNewSearchUser();
   }
 
-  componentWillUnmount() {
-    this.props.removeSearchUser();
-  }
-
   render() {
     return (
       <div>
-        Wait for users
-        {this.props.users}
+        {this.props.raceStartedFromServer
+          ? <Redirect
+              to={{
+                pathname: '/type',
+                state: { multi: true, success: true }
+              }}
+            />
+          : <div>
+              <p>Wait for users</p>
+              {this.props.users}
+            </div>}
       </div>
     );
   }
@@ -31,8 +37,10 @@ WaitForUsers.propTypes = {
 };
 
 function mapStateToProps(state) {
+  let { searchUsers, raceStartedFromServer } = state.userReducer;
   return {
-    users: state.userReducer.searchUsers
+    users: searchUsers,
+    raceStartedFromServer: raceStartedFromServer
   };
 }
 

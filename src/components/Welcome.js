@@ -8,7 +8,7 @@ class Welcome extends React.Component {
     return (
       <SWrapper>
         <SLeft>
-          <SLink to="/single">Single player</SLink>
+          <SLink to="/type">Single player</SLink>
           <SLink to="/multi">Multiplayer</SLink>
           <SMiniTitle>Typer. Test your speed.</SMiniTitle>
         </SLeft>

@@ -41,7 +41,8 @@ TypeSpeed.propTypes = {
 function mapStateToProps(state) {
   return {
     timePassed: state.calcReducer.timePassed,
-    activeWordIndex: state.textReducer.activeWordIndex
+    activeWordIndex: state.textReducer.activeWordIndex,
+    typeStarted: state.textReducer.typeStartedAfterTimer
   };
 }
 

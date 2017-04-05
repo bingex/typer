@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { setTimePassed } from './../store/actions/calcActions';
+import { startTypeAfterTimer } from './../store/actions/textActions';
 import { SIndicatorWrapper } from './../styles/generalStyles';
 
 const STimerWrapper = styled(SIndicatorWrapper)`
@@ -23,7 +24,9 @@ class Timer extends React.Component {
   }
 
   componentDidMount() {
-    this.startTimer();
+    if (this.props.typeStarted) {
+      this.startTimer();
+    }
   }
 
   componentWillUnmount() {
@@ -81,4 +84,4 @@ Timer.propTypes = {
   setTimePassed: React.PropTypes.func.isRequired
 };
 
-export default connect(null, { setTimePassed })(Timer);
+export default connect(null, { setTimePassed, startTypeAfterTimer })(Timer);
