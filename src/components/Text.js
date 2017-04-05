@@ -14,17 +14,17 @@ const bluredText = {
   textShadow: '0 0 7px rgba(0,0,0,0.5)',
   color: 'transparent'
 };
-
+// { userSelect: 'none' }
 const Text = props => {
   const Words = props.data.map((word, index) => {
     return (
       <span key={index} style={inlineBlock}>
         <span
-          style={
-            index === !props.typeStarted
-              ? bluredText
-              : props.active ? activeStyle : { userSelect: 'none' }
-          }
+          style={{
+            ...(index === props.active ? activeStyle : null),
+            ...(!props.typeStarted ? bluredText : null),
+            ...{ userSelect: 'none' }
+          }}
         >
           {word}
         </span>

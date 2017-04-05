@@ -14,7 +14,7 @@ export default function games(state = initial, action = {}) {
 
     case TOGGLE_TYPING:
       return Object.assign({}, state, {
-        typeStarted: action.payload
+        typeStarted: action.typeStarted
       });
 
     default:

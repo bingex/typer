@@ -10,6 +10,6 @@ export function setActiveWord(index) {
 export function toggleTyping(start) {
   return {
     type: TOGGLE_TYPING,
-    payload: start
+    typeStarted: start
   };
 }

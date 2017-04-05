@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { setTimePassed } from './../store/actions/calcActions';
-import { startTypeAfterTimer } from './../store/actions/textActions';
 import { SIndicatorWrapper } from './../styles/generalStyles';
 
 const STimerWrapper = styled(SIndicatorWrapper)`
@@ -23,8 +22,8 @@ class Timer extends React.Component {
     this.add = this.add.bind(this);
   }
 
-  componentDidMount() {
-    if (this.props.typeStarted) {
+  componentWillReceiveProps(props) {
+    if (props.typeStarted) {
       this.startTimer();
     }
   }
@@ -84,4 +83,4 @@ Timer.propTypes = {
   setTimePassed: React.PropTypes.func.isRequired
 };
 
-export default connect(null, { setTimePassed, startTypeAfterTimer })(Timer);
+export default connect(null, { setTimePassed })(Timer);
