@@ -7,14 +7,17 @@ import {
 const initial = {
   activeUsers: [],
   searchUsers: [],
-  raceStartedFromServer: false
+  raceStartedFromServer: false,
+  activeUserId: ''
 };
 
 export default function userReducer(state = initial, action = {}) {
   switch (action.type) {
     case NEW_USER_CONNECTED:
+      console.log(action);
       return Object.assign({}, state, {
-        activeUsers: action.payload
+        activeUsers: action.payload,
+        activeUserId: action.userId
       });
 
     case START_TYPE_FROM_SERVER:

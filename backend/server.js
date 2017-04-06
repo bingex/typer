@@ -25,18 +25,19 @@ const roomSize = 2;
 let globalsocket = io.on('connection', socket => {
   if (socket && socket.client) {
     users.push(socket.client.id);
-    emitUsers(globalsocket, users);
+    emitUsers(globalsocket, users, socket.client.id);
   }
 
   // On disconnect user remove him from room and all users list
   socket.on('disconnect', () => {
     let id = socket.client.id;
+
     console.log(`Room ${room} left ${id}.`);
 
     let usersIndex = users.indexOf(id);
     if (usersIndex !== -1) {
       users.splice(usersIndex, 1);
-      emitUsers(globalsocket, users);
+      emitUsers(globalsocket, users, socket.client.id);
     }
 
     // let usersSearchIndex = usersSearchType.map(u => u.id).indexOf(id);
@@ -73,6 +74,15 @@ let globalsocket = io.on('connection', socket => {
 
         break;
 
+      case 'REMOVE_USER_FROM_SEARCH':
+        let id = action.userId;
+        let userToRemove = usersSearchType.filter(u => u.id === id);
+        let userToRemoveIndex = userToRemove.map(u => u.id).indexOf(id);
+
+        if (userToRemoveIndex !== -1) {
+          usersSearchType.splice(userToRemoveIndex, 1);
+        }
+
       default:
         break;
     }
@@ -104,11 +114,12 @@ function emitStartType(socket, users, param) {
 }
 
 // Update all users list in all connected clients
-function emitUsers(socket, users) {
+function emitUsers(socket, users, userId) {
   socket.emit('action', {
     type: 'NEW_USER_CONNECTED',
     meta: { remote: true },
-    payload: users
+    payload: users,
+    userId
   });
 }
 

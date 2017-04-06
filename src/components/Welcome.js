@@ -2,28 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ActiveUsers from './ActiveUsers';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 class Welcome extends React.Component {
-  state = {
-    username: ''
-  };
+  // state = {
+  //   username: ''
+  // };
 
-  changeInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  // changeInput = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
 
   render() {
     return (
       <SWrapper>
         <SLeft>
           <div style={{ width: '120px' }}>
-            <SInput
+            {/*<SInput
               type="text"
               placeholder="Your name?"
               name="username"
               value={this.state.username}
               onChange={this.changeInput}
-            />
+            />*/}
             <SLink to="/type">Single player</SLink>
             <SLink to="/multi">Multiplayer</SLink>
           </div>
@@ -32,14 +33,24 @@ class Welcome extends React.Component {
 
         <SRight>
           <ActiveUsers />
-          <SMiniTitle>Active users.</SMiniTitle>
+          <SMiniTitle>YOU: {this.props.activeUserId}</SMiniTitle>
         </SRight>
       </SWrapper>
     );
   }
 }
 
-export default Welcome;
+Welcome.propTypes = {
+  activeUserId: React.PropTypes.string.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    activeUserId: state.userReducer.activeUserId
+  };
+}
+
+export default connect(mapStateToProps, {})(Welcome);
 
 // STYLES
 const SWrapper = styled.div`
@@ -72,19 +83,19 @@ const SRight = styled(SSection)`
 	background-color: #009688;
 `;
 
-const SInput = styled.input`
-	width: 110px;
-	border: none;
-	border-radius: 2px;
-	height: 36px;
-	outline: none;
-	padding-left: 10px;
-	background-color: #18FFFF;
+// const SInput = styled.input`
+// 	width: 110px;
+// 	border: none;
+// 	border-radius: 2px;
+// 	height: 36px;
+// 	outline: none;
+// 	padding-left: 10px;
+// 	background-color: #18FFFF;
 
-	&::-webkit-input-placeholder {
-    color: #00BCD4;
-  }
-`;
+// 	&::-webkit-input-placeholder {
+//     color: #00BCD4;
+//   }
+// `;
 
 const SLink = styled(Link)`
 	margin: 10px 0;
