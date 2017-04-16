@@ -1,8 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
+// Actions
 import { setActiveWord } from './../store/actions/textActions';
+
+// Styles
+import styles from './../styles/TextInput.css';
 
 class TextInput extends React.Component {
   state = {
@@ -36,8 +40,9 @@ class TextInput extends React.Component {
 
   render() {
     return (
-      <SInputWrapper>
-        <SInput
+      <div className={styles.wrapper}>
+        <input
+          className={styles.textinput}
           type="text"
           name="word"
           value={this.state.word}
@@ -47,7 +52,7 @@ class TextInput extends React.Component {
           style={{ color: this.state.wrong ? '#B71C1C' : '#263238' }}
           disabled={!this.props.typeStarted}
         />
-      </SInputWrapper>
+      </div>
     );
   }
 }
@@ -59,24 +64,3 @@ TextInput.propTypes = {
 };
 
 export default connect(null, { setActiveWord })(TextInput);
-
-// STYLES
-const SInputWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 40px 0 0 0;
-`;
-
-const SInput = styled.input`
-  width: 100%;
-  height: 36px;
-  border-radius: 3px;
-  padding-left: 10px;
-  border: 2px solid #00BFA5;
-  outline: none;
-  font-size: 16px;
-
-  &::-webkit-input-placeholder {
-    color: #CFD8DC;
-  }
-`;

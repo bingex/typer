@@ -2,13 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StartTimer from './StartTimer';
 
+// Inline styles
 const activeStyle = {
   color: 'green',
   textDecoration: 'underline'
-};
-
-const inlineBlock = {
-  display: 'inline-block'
 };
 
 const bluredText = {
@@ -19,7 +16,7 @@ const bluredText = {
 const Text = props => {
   const Words = props.data.map((word, index) => {
     return (
-      <span key={index} style={inlineBlock}>
+      <span key={index} style={{ display: 'inline-block' }}>
         <span
           style={{
             ...(index === props.active ? activeStyle : null),

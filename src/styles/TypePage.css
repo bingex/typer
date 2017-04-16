@@ -1,0 +1,12 @@
+.wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.indicatorWrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 5px;
+  color: #546E7A;
+}

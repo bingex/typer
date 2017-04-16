@@ -14,6 +14,7 @@
  ☐ Add Results component: show it after race is finished.
  ✔ Blur text, disable input and timer when user wait for start. @done (17-04-05 21:45)
  ☐ Do not allow open type page without welcome page.
+ ✔ Rewrite styles to CSS Modules instead of styles-components. @done (4/16/2017, 6:09:04 PM)
  ✔ Add input to Welcome component. @done (17-04-05 23:57)
  ✔ Implement rooms correctly. Need new room every new search. (Idea: add room field to users array?). @done (17-04-05 23:14)
  ✔ Remove user from search array when he leave it @done (4/6/2017, 12:50:11 PM)

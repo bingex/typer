@@ -1,13 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
+// Components
 import Text from './Text';
 import TextInput from './TextInput';
 import Timer from './Timer';
 import TypeSpeed from './TypeSpeed';
+
+// Data
 import demoText from './../DemoText';
+
+// Actions
 import { toggleTyping } from './../store/actions/textActions';
+
+// Styles
+import styles from './../styles/TypePage.css';
 
 const textArr = demoText.split(' ');
 
@@ -26,7 +34,7 @@ class TypePage extends React.Component {
 
   render() {
     return (
-      <SWrapper>
+      <div className={styles.wrapper}>
         <Text
           data={textArr}
           active={this.props.activeWordIndex}
@@ -37,11 +45,11 @@ class TypePage extends React.Component {
           active={this.props.activeWordIndex}
           typeStarted={this.props.typeStarted}
         />
-        <SIndicatorsWrapper>
+        <div className={styles.indicatorWrapper}>
           <TypeSpeed />
           <Timer typeStarted={this.props.typeStarted} />
-        </SIndicatorsWrapper>
-      </SWrapper>
+        </div>
+      </div>
     );
   }
 }
@@ -59,17 +67,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { toggleTyping })(TypePage);
-
-// STYLES
-const SWrapper = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  padding-top: 20px;
-`;
-
-const SIndicatorsWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px 5px;
-  color: #546E7A;
-`;

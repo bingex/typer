@@ -5,3 +5,5 @@ cd typer/backend && npm start <br />
 
 App start: <br />
 cd typer && npm start <br />
+
+Progress: tasks.todo

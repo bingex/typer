@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+// Actions
 import { setTimePassed } from './../store/actions/calcActions';
 
 class Timer extends React.Component {

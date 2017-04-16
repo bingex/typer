@@ -9,7 +9,7 @@ import socketIO from 'socket.io-client';
 import socketIoMiddleware from 'redux-socket.io-middleware';
 
 import App from './App';
-import './index.css';
+import './styles/shared.css';
 
 const io = socketIO.connect();
 
