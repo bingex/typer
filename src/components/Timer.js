@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { setTimePassed } from './../store/actions/calcActions';
-import { SIndicatorWrapper } from './../styles/generalStyles';
-
-const STimerWrapper = styled(SIndicatorWrapper)`
-  right: 20px;
-`;
 
 class Timer extends React.Component {
   constructor(props) {
@@ -72,15 +67,15 @@ class Timer extends React.Component {
 
   render() {
     return (
-      <STimerWrapper>
+      <div style={{ paddingLeft: '20px' }}>
         <span>{this.state.time}</span>
-      </STimerWrapper>
+      </div>
     );
   }
 }
 
 Timer.propTypes = {
-  setTimePassed: React.PropTypes.func.isRequired
+  setTimePassed: PropTypes.func.isRequired
 };
 
 export default connect(null, { setTimePassed })(Timer);

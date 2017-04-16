@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { setActiveWord } from './../store/actions/textActions';
 
 class TextInput extends React.Component {
@@ -52,9 +53,9 @@ class TextInput extends React.Component {
 }
 
 TextInput.propTypes = {
-  active: React.PropTypes.number.isRequired,
-  data: React.PropTypes.array.isRequired,
-  setActiveWord: React.PropTypes.func.isRequired
+  active: PropTypes.number.isRequired,
+  data: PropTypes.array.isRequired,
+  setActiveWord: PropTypes.func.isRequired
 };
 
 export default connect(null, { setActiveWord })(TextInput);

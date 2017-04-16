@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StartTimer from './StartTimer';
 
 const activeStyle = {
@@ -14,7 +15,7 @@ const bluredText = {
   textShadow: '0 0 7px rgba(0,0,0,0.5)',
   color: 'transparent'
 };
-// { userSelect: 'none' }
+
 const Text = props => {
   const Words = props.data.map((word, index) => {
     return (
@@ -42,8 +43,8 @@ const Text = props => {
 };
 
 Text.propTypes = {
-  active: React.PropTypes.number.isRequired,
-  data: React.PropTypes.array.isRequired
+  active: PropTypes.number.isRequired,
+  data: PropTypes.array.isRequired
 };
 
 export default Text;

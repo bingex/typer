@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Text from './Text';
 import TextInput from './TextInput';
 import Timer from './Timer';
@@ -36,16 +37,18 @@ class TypePage extends React.Component {
           active={this.props.activeWordIndex}
           typeStarted={this.props.typeStarted}
         />
-        <TypeSpeed />
-        <Timer typeStarted={this.props.typeStarted} />
+        <SIndicatorsWrapper>
+          <TypeSpeed />
+          <Timer typeStarted={this.props.typeStarted} />
+        </SIndicatorsWrapper>
       </SWrapper>
     );
   }
 }
 
 TypePage.propTypes = {
-  activeWordIndex: React.PropTypes.number.isRequired,
-  toggleTyping: React.PropTypes.func.isRequired
+  activeWordIndex: PropTypes.number.isRequired,
+  toggleTyping: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -62,4 +65,11 @@ const SWrapper = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding-top: 20px;
+`;
+
+const SIndicatorsWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 5px;
+  color: #546E7A;
 `;

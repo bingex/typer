@@ -17,3 +17,4 @@
  ✔ Add input to Welcome component. @done (17-04-05 23:57)
  ✔ Implement rooms correctly. Need new room every new search. (Idea: add room field to users array?). @done (17-04-05 23:14)
  ✔ Remove user from search array when he leave it @done (4/6/2017, 12:50:11 PM)
+ ✔ Change React.PropTypes to PropTypes from 'prop-types'. @done (4/16/2017, 4:18:17 PM)

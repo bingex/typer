@@ -1,12 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { SIndicatorWrapper } from './../styles/generalStyles';
-
-const STypeSpeedWrapper = styled(SIndicatorWrapper)`
-  left: 20px;
-  flex-direction: column;
-`;
+import PropTypes from 'prop-types';
 
 class TypeSpeed extends React.Component {
   state = {
@@ -25,17 +19,17 @@ class TypeSpeed extends React.Component {
 
   render() {
     return (
-      <STypeSpeedWrapper>
+      <div>
         <span>{this.state.speed}</span>
-        <span>wpm</span>
-      </STypeSpeedWrapper>
+        <span style={{ fontSize: '12px' }}> wpm</span>
+      </div>
     );
   }
 }
 
 TypeSpeed.propTypes = {
-  timePassed: React.PropTypes.number.isRequired,
-  activeWordIndex: React.PropTypes.number.isRequired
+  timePassed: PropTypes.number.isRequired,
+  activeWordIndex: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state) {

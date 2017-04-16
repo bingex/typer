@@ -3,28 +3,14 @@ import { Link } from 'react-router-dom';
 import ActiveUsers from './ActiveUsers';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Welcome extends React.Component {
-  // state = {
-  //   username: ''
-  // };
-
-  // changeInput = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // };
-
   render() {
     return (
       <SWrapper>
         <SLeft>
           <div style={{ width: '120px' }}>
-            {/*<SInput
-              type="text"
-              placeholder="Your name?"
-              name="username"
-              value={this.state.username}
-              onChange={this.changeInput}
-            />*/}
             <SLink to="/type">Single player</SLink>
             <SLink to="/multi">Multiplayer</SLink>
           </div>
@@ -41,7 +27,7 @@ class Welcome extends React.Component {
 }
 
 Welcome.propTypes = {
-  activeUserId: React.PropTypes.string.isRequired
+  activeUserId: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state) {
@@ -82,20 +68,6 @@ const SRight = styled(SSection)`
 	color: #ffffff;
 	background-color: #009688;
 `;
-
-// const SInput = styled.input`
-// 	width: 110px;
-// 	border: none;
-// 	border-radius: 2px;
-// 	height: 36px;
-// 	outline: none;
-// 	padding-left: 10px;
-// 	background-color: #18FFFF;
-
-// 	&::-webkit-input-placeholder {
-//     color: #00BCD4;
-//   }
-// `;
 
 const SLink = styled(Link)`
 	margin: 10px 0;

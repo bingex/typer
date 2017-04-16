@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   addNewSearchUser,
   removeUserFromSearch
@@ -35,10 +36,10 @@ class WaitForUsers extends React.Component {
 }
 
 WaitForUsers.propTypes = {
-  users: React.PropTypes.array.isRequired,
-  activeUserId: React.PropTypes.string.isRequired,
-  addNewSearchUser: React.PropTypes.func.isRequired,
-  removeUserFromSearch: React.PropTypes.func.isRequired
+  users: PropTypes.array.isRequired,
+  activeUserId: PropTypes.string.isRequired,
+  addNewSearchUser: PropTypes.func.isRequired,
+  removeUserFromSearch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {

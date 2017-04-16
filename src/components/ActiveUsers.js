@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class ActiveUsers extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class ActiveUsers extends React.Component {
 }
 
 ActiveUsers.propTypes = {
-  users: React.PropTypes.array.isRequired
+  users: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
